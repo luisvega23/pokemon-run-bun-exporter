@@ -4567,7 +4567,6 @@ function printMon(mon)
 			end
 		end
 	end
-	str = str .. string.format("Met Location: %s", getLoctaion(mon)) .. string.format("\n")
 	str = str .. string.format("\n")
 	return str
 end
@@ -4621,6 +4620,42 @@ function hiddens()
 	getHiddens(hiddenBuffer)
 end
 
+function printCSVFormat(mon)
+	-- location, mon, ability, nature, stat1, stat2, stat3 ... move1, ... , move4
+	-- 
+	return string.format(
+					"%s, %s, %s, %s, %d, %d, %d, %d, %d, %d",
+					getLoctaion(mon), mons[mon.species], getAbility(mon), getNature(mon),
+					mon.hpIV, mon.attackIV, mon.defenseIV, mon.spAttackIV, mon.spDefenseIV, mon.speedIV
+				) .. string.format("\n")
+end
+
+function getEncounters(buffer)
+    address = storageLoc + 4
+	i = 0
+	buffer:clear()
+	buffer:print("location, mon, ability, nature, HP, Atk, Def, SpA, SpD, Spe" .. string.format("\n"))
+	for _, mon in ipairs(getParty()) do
+		if (mon.species ~= 0) then
+			buffer:print(printCSVFormat(mon))
+		end
+	end
+	while i<120 do
+		if (emu:read32(address) ~=0) then 
+			buffer:print(printCSVFormat(readBoxMon(address)))
+		end
+		i = i+1
+		address = address + 80
+	end
+end
+
+function encounters()
+	if not encounterBuffer then
+		console:log("error")
+	end
+	getEncounters(encounterBuffer)
+end
+
 function startScript()
 	console:log('To update your exports type "export()"')
 	if not partyBuffer then
@@ -4632,6 +4667,11 @@ function startScript()
 		hiddenBuffer = console:createBuffer("Hidden Powers")
 		hiddenBuffer:setSize(200,200)
 		hiddens()
+	end
+	if not encounterBuffer then
+		encounterBuffer = console:createBuffer("Encounter List")
+		encounterBuffer:setSize(200, 1000)
+		encounters()
 	end
 end
 
@@ -4646,6 +4686,11 @@ function export()
 		return
 	end
 	hiddens()
+	if not encounterBuffer then
+		console:log("error")
+		return
+	end
+	encounterBuffer()
 end
 
 callbacks:add("start", startScript)

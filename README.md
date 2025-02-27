@@ -36,6 +36,17 @@ Aerodactyl - Dragon
 Golisopod - Fire
 ```
 
+## Encouters
+```
+location, mon, ability, nature, HP, Atk, Def, SpA, SpD, Spe
+RUSTBORO_CITY, Aerodactyl, Unnerve, Impish, 12, 31, 31, 31, 31, 31
+MAUVILLE_CITY, Metagross, Clear Body, Hasty, 22, 31, 29, 31, 15, 31
+ROUTE_113, Skuntank, Keen Eye, Quirky, 1, 2, 7, 14, 8, 23
+ROUTE_110, Luxray, Intimidate, Impish, 26, 19, 31, 8, 1, 21
+ROUTE_112, Pyroar, Unnerve, Hardy, 18, 21, 2, 15, 18, 6
+ROUTE_111, Excadrill, Sand Rush, Adamant, 6, 2, 1, 3, 0, 24
+```
+
 # Credits
 - [@tennistennis](https://drive.google.com/drive/folders/1M-PdZrACBkGPpceTanCq_ltbGNT24lR8?usp=drive_link) (original author)
 - [lvega23](https://github.com/luisvega23)
