@@ -4713,8 +4713,8 @@ end
 function startScript()
 	console:log('To update your exports type "export()"')
 	console:log("To predamage, type preDamage(slot, target_hp)")
-	console:log('To prestatus, type preStatus(slot, "status"). NOTICE THE "" for the status')
-	console:log('Prestatus options: "poison", "burn", "freeze", "paralyse",	"toxic"", "sleep"')
+	console:log('To prestatus, type preStatus(slot, "status"). NOTICE THE "" for the status !!')
+	console:log('Prestatus options: "poison", "burn", "freeze", "paralyse",	"toxic", "sleep"')
 	if not partyBuffer then
 		partyBuffer = console:createBuffer("Showdown Export")
 		partyBuffer:setSize(200,1000)
