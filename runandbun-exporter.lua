@@ -4622,19 +4622,32 @@ end
 
 function printCSVFormat(mon)
 	-- location, mon, ability, nature, stat1, stat2, stat3 ... move1, ... , move4
-	-- 
-	return string.format(
+	csv =  string.format(
 					"%s, %s, %s, %s, %d, %d, %d, %d, %d, %d",
 					getLoctaion(mon), mons[mon.species], getAbility(mon), getNature(mon),
 					mon.hpIV, mon.attackIV, mon.defenseIV, mon.spAttackIV, mon.spDefenseIV, mon.speedIV
-				) .. string.format("\n")
+				)
+	for i=1,4 do
+		local mv = move[mon.moves[i] + 1]
+		if(mv == "Hidden Power") then
+			csv = csv .. string.format(", Hidden Power %s\n", getHP(mon))
+		else
+			if(mv ~= "") then
+				csv = csv .. string.format(", %s", mv)
+			else
+				csv = csv .. string.format(", ")
+			end
+		end
+	end
+	csv = csv .. string.format("\n")
+	return csv
 end
 
 function getEncounters(buffer)
     address = storageLoc + 4
 	i = 0
 	buffer:clear()
-	buffer:print("location, mon, ability, nature, HP, Atk, Def, SpA, SpD, Spe" .. string.format("\n"))
+	buffer:print("location, mon, ability, nature, HP, Atk, Def, SpA, SpD, Spe, Move1, Move2, Move3, Move4" .. string.format("\n"))
 	for _, mon in ipairs(getParty()) do
 		if (mon.species ~= 0) then
 			buffer:print(printCSVFormat(mon))
@@ -4690,7 +4703,7 @@ function export()
 		console:log("error")
 		return
 	end
-	encounterBuffer()
+	encounters()
 end
 
 callbacks:add("start", startScript)
