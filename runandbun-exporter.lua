@@ -4298,6 +4298,14 @@ location = {
 	["0xFF"] = "FATEFUL_ENCOUNTER"
 }
 
+status = {
+	poison = 3,
+	burn = 4,
+	freeze = 5,
+	paralyse = 6,
+	toxic = 7
+}
+
 local terminator=0xFF
 local monNameLength=10
 local speciesNameLength=11
@@ -4669,8 +4677,44 @@ function encounters()
 	getEncounters(encounterBuffer)
 end
 
+function getSlotAddress(slot)
+    if (slot < 1 or slot > emu:read8(partyCount)) then
+        console:log("Invalid slot number")
+        return
+    end
+    return partyloc + partyMonSize * (slot - 1)
+end
+
+function preDamage(slot, target_hp)
+    local address = getSlotAddress(slot)
+    local maxHP = emu:read16(address + 88)
+    if (target_hp <= 0) then
+        console:log("You probably don't want to do that")
+        return
+    end
+    if (target_hp > maxHP) then
+        target_hp = maxHP
+    end
+    emu:write16(address + 86, target_hp & 0xFFFF)
+end
+
+function preStatus(slot, pre_status)
+	local address = getSlotAddress(slot)
+	if (status[pre_status] ~= nil) then
+		emu:write32(address + 80, 1 << status[pre_status])
+	elseif pre_status == "sleep" then
+		emu:write32(address + 80, 1 << 0 | 1 << 1 | 1 << 2)
+	else
+        console:log("Invalid status")
+        return
+	end
+end
+
 function startScript()
 	console:log('To update your exports type "export()"')
+	console:log("To predamage, type preDamage(slot, target_hp)")
+	console:log('To prestatus, type preStatus(slot, "status"). NOTICE THE "" for the status !!')
+	console:log('Prestatus options: "poison", "burn", "freeze", "paralyse",	"toxic", "sleep"')
 	if not partyBuffer then
 		partyBuffer = console:createBuffer("Showdown Export")
 		partyBuffer:setSize(200,1000)

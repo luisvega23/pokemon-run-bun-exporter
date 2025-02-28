@@ -16,7 +16,6 @@ IVs: 12 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Aerial Ace
 - Dual Wingbeat
 - Rock Blast
-Met Location: RUSTBORO_CITY
 
 Golisopod
 Ability: Emergency Exit
@@ -27,7 +26,6 @@ IVs: 14 HP / 12 Atk / 5 Def / 30 SpA / 13 SpD / 10 Spe
 - First Impression
 - Liquidation
 - Leech Life
-Met Location: SCORCHED_SLAB
 ```
 
 ## Hidden Powers
@@ -45,7 +43,37 @@ ROUTE_108, Basculegion, Swift Swim, Quiet, 28, 12, 18, 26, 9, 29, Shadow Sneak, 
 DEWFORD_TOWN, Mienshao, Regenerator, Calm, 13, 23, 8, 12, 16, 31, High Jump Kick, Focus Blast, Fake Out, Vacuum Wave
 ```
 
-# Credits
+## Pre Status
+In the console, run the following command:
+
+```
+preStatus(slot, "status")
+```
+
+Status options:
+- "poison"
+- "burn"
+- "freeze"
+- "paralyse"
+- "toxic"
+- "sleep"
+
+Be careful to use the `""` when typing the status !!!!
+
+## Pre Damage
+In the console, run the following command:
+
+```
+preDamage(slot, target_hp)
+```
+
+For example, if I want my second slot to be at 10 hp, I have to run
+
+```
+preDamage(2, 10)
+```
+
+## Credits
 - [@tennistennis](https://drive.google.com/drive/folders/1M-PdZrACBkGPpceTanCq_ltbGNT24lR8?usp=drive_link) (original author)
 - [lvega23](https://github.com/luisvega23)
 
