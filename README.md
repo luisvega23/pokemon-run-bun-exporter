@@ -38,13 +38,11 @@ Golisopod - Fire
 
 ## Encouters
 ```
-location, mon, ability, nature, HP, Atk, Def, SpA, SpD, Spe
-RUSTBORO_CITY, Aerodactyl, Unnerve, Impish, 12, 31, 31, 31, 31, 31
-MAUVILLE_CITY, Metagross, Clear Body, Hasty, 22, 31, 29, 31, 15, 31
-ROUTE_113, Skuntank, Keen Eye, Quirky, 1, 2, 7, 14, 8, 23
-ROUTE_110, Luxray, Intimidate, Impish, 26, 19, 31, 8, 1, 21
-ROUTE_112, Pyroar, Unnerve, Hardy, 18, 21, 2, 15, 18, 6
-ROUTE_111, Excadrill, Sand Rush, Adamant, 6, 2, 1, 3, 0, 24
+location, mon, ability, nature, HP, Atk, Def, SpA, SpD, Spe, Move1, Move2, Move3, Move4
+MIRAGE_TOWER, Reuniclus, Magic Guard, Adamant, 31, 3, 1, 26, 20, 26, Psychic, Recover, Shadow Ball, Future Sight
+FORTREE_CITY, Kecleon, Protean, Timid, 15, 30, 20, 5, 2, 6, Fake Out, Recover, Knock Off, Sucker Punch
+ROUTE_108, Basculegion, Swift Swim, Quiet, 28, 12, 18, 26, 9, 29, Shadow Sneak, Liquidation, Shadow Ball, Poltergeist
+DEWFORD_TOWN, Mienshao, Regenerator, Calm, 13, 23, 8, 12, 16, 31, High Jump Kick, Focus Blast, Fake Out, Vacuum Wave
 ```
 
 # Credits
